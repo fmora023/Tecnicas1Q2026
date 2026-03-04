@@ -1,6 +1,6 @@
 ﻿namespace ClassExamples
 {
-    partial class MainForm
+    partial class CalculatorForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -110,7 +110,7 @@
             resultLbl.TabIndex = 4;
             resultLbl.Text = "Result";
             // 
-            // MainForm
+            // CalculatorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -123,7 +123,7 @@
             Controls.Add(textBox1);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "MainForm";
+            Name = "CalculatorForm";
             Text = "Main Form";
             ResumeLayout(false);
             PerformLayout();
