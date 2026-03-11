@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassController\ClassController.csproj" />
+    <ProjectReference Include="..\ClassExampleModel\ClassExampleModel.csproj" />
   </ItemGroup>
 
 </Project>

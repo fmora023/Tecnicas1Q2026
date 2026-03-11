@@ -1,3 +1,7 @@
+using ClassController;
+using ClassExampleModel;
+using ClassExamples.Configuration;
+
 namespace ClassExamples
 {
     internal static class Program
@@ -11,7 +15,16 @@ namespace ClassExamples
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new PrincipalForm());
+            var loginController = LoadServices();
+            Application.Run(new LoginView(loginController));
+        }
+
+        private static LoginController LoadServices()
+        {
+            var fileHandler = new FileHandler<User>(ConfigurationItems.UserFilePath);
+            var userController = new UserController(fileHandler);
+            var loginController = new LoginController(userController);
+            return loginController;
         }
     }
 }

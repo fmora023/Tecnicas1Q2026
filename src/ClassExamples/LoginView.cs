@@ -1,0 +1,42 @@
+﻿namespace ClassExamples
+{
+    using ClassController;
+
+    /// <summary>
+    /// View for the Login.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
+    public partial class LoginView : Form
+    {
+        private LoginController loginController;
+        private string userName => this.txtUser.Text;
+        private string password => this.txtPassword.Text;
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginView"/> class.
+        /// </summary>
+        /// <param name="loginController">The login controller.</param>
+        public LoginView(LoginController loginController)
+        {
+            this.InitializeComponent();
+            this.loginController = loginController;
+        }
+
+        private void BtnLogin_Click(object sender, EventArgs e)
+        {
+            var result = this.loginController.Login(this.userName, this.password);
+
+            if (result)
+            {
+                MessageBox.Show("Login successful! Welcome!!");
+                var principalForm = new PrincipalForm();
+                principalForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Login failed. Please check your username and password.");
+            }
+        }
+    }
+}
