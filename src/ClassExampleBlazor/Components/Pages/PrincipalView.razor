@@ -1,0 +1,89 @@
+﻿@page "/principal-form"
+@using ClassController
+@rendermode InteractiveServer
+@inject CalculatorController calculatorControllerService
+
+<div class="container mt-5">
+    <div class="alert alert-info" role="alert">
+        <strong>¡Hola!</strong> Este es el principal View
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold">
+            <i class="bi bi-1-circle"></i> Value 1
+        </label>
+        <input @bind-value=@this.Value1 type="number" class="form-control form-control-lg" placeholder="Enter first value" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold">
+            <i class="bi bi-2-circle"></i> Value 2
+        </label>
+        <input @bind-value=@this.Value2 type="number" class="form-control form-control-lg" placeholder="Enter second value" />
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label fw-bold">
+            <i class="bi bi-calculator"></i> Result
+        </label>
+        <input @bind-value=@this.Result readonly class="form-control form-control-lg bg-light" placeholder="Result will appear here" />
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="button" class="btn btn-primary btn-lg" @onclick=Sum>
+            <i class="bi bi-plus-circle"></i> Sum Elements
+        </button>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        padding: 0.75rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+
+    .alert-info {
+        border-radius: 10px;
+        border-left: 5px solid #0dcaf0;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+</style>
+
+@code {
+    private int Value1 { get; set; } = 0;
+    private int Value2 { get; set; } = 0;
+    private string Result { get; set; } = string.Empty;
+
+    private CalculatorController calculatorController = new CalculatorController();
+
+    private void Sum()
+    {
+        // this.Result = calculatorController.Sum(this.Value1, this.Value2).ToString();
+        this.Result = calculatorControllerService.Sum(this.Value1, this.Value2).ToString();
+    }
+}
